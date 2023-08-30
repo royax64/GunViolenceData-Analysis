@@ -1,4 +1,4 @@
-# Pull Requests Review Comments Data
+# Gun Violence Data Analysis
 
 La información en el repositorio representa una colección de aprox. 260,000 casos de violencia a mano armada. Esto servirá para practicar mis habilidades de Data Science
 
