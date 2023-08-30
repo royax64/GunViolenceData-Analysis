@@ -1,14 +1,14 @@
 # Pull Requests Review Comments Data
 
-La información en el repositorio representa una colección de aprox. 20,000 comentarios de pull requests de Git-Hub. Esto servirá para practicar mis habilidades de Data Science
+La información en el repositorio representa una colección de aprox. 260,000 casos de violencia a mano armada. Esto servirá para practicar mis habilidades de Data Science
 
 ## Sobre los datos
 
-Los datos, como su nombre lo indica, fueron creados el día 01 de enero del 2017 a las 19 horas, cada registro menciona información sobre el commit, los autores, el repositorio y los comentarios
+Los datos comienzan a partir de Enero del 2013 y terminan en Marzo del 2018, cada registro menciona información sobre los participantes, el lugar del incidente, la fecha y hora, arma usada, entre otros.
 
 ## Creditos
 
-Información sacada de awesome-public-datasets:
+Información extraida por jamesgo:
 
-- [Awesome Public Datasets](https://github.com/src-d/datasets/tree/master/ReviewComments)
+- [Gun-Violence-Data](https://github.com/jamesqo/gun-violence-data)
 
