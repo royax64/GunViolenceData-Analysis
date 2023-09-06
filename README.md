@@ -6,6 +6,11 @@ La información en el repositorio representa una colección de aprox. 260,000 ca
 
 Los datos comienzan a partir de Enero del 2013 y terminan en Marzo del 2018, cada registro menciona información sobre los participantes, el lugar del incidente, la fecha y hora, arma usada, entre otros.
 
+## Modelo Entidad-Relación
+
+Se identifican las entidades de Ubicación, Pistola, Victima y Victimario.
+![alt text]('/Práctica 2/diagram.png')
+
 ## Creditos
 
 Información extraida por jamesgo:
