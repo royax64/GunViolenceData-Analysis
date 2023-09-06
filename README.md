@@ -9,7 +9,7 @@ Los datos comienzan a partir de Enero del 2013 y terminan en Marzo del 2018, cad
 ## Modelo Entidad-Relación
 
 Se identifican las entidades de Ubicación, Pistola, Victima y Victimario.
-![alt text]('/Práctica 2/diagram.png')
+![alt text](https://raw.githubusercontent.com/royax64/GunViolenceData-Analysis/main/Pr%C3%A1ctica%202/diagram.png)
 
 ## Creditos
 
