@@ -1,6 +1,8 @@
 #Práctica 3: Pruebas Estadisticas Descriptivas
 #Este script imprime los resultados.
 import pandas as pd
+from collections import Counter
+
 
 def main():
     
@@ -28,9 +30,26 @@ def main():
     #Muertos y heridos cada 100,000 habitantes de cada estado
     perHThousand = GVDSumState.assign(deathsPerHThousand = (GVDSumState['n_killed'] / GVDSumState['2020_Population'])*100000, injuriesPerHThousand = (GVDSumState['n_injured'] / GVDSumState['2020_Population'])*100000)
     perHThousand = perHThousand.sort_values('deathsPerHThousand')
-    print(f"El estado con más muertes por cada 100,000 habitantes es: \n{perHThousand.tail(1)[['deathsPerHThousand']]}\n\ny el que tiene menos es: \n{perHThousand.head(1)[['deathsPerHThousand']]}")
+    print(f"\nEl estado con más muertes por cada 100,000 habitantes es: \n{perHThousand.tail(1)[['deathsPerHThousand']]}\n\ny el que tiene menos es: \n{perHThousand.head(1)[['deathsPerHThousand']]}\n")
     perHThousand.to_csv('MuertesPorCadaCienMil.csv')   
 
+    #Lugar más común (analizando location_description)
+    GVDdf['location_description'] = GVDdf['location_description'].fillna('Unknown').str.lower()
+    wordsMostUsed = Counter(" ".join(GVDdf['location_description']).split()).most_common(20)
+    wordsMostUsedDF = pd.DataFrame(wordsMostUsed, columns=['Word', 'Frequency'])
+    print(f"Los lugares con más incidentes son: {', '.join(i for i in wordsMostUsedDF['Word'])}.")
+    wordsMostUsedDF.to_csv('localizacionesMasRepetidas.csv')
+
+    #Día, mes y año más violentos (con más incidentes)
+    GVDdf.date = pd.to_datetime(GVDdf.date)
+    GVDdf.set_index('date',inplace=True)
+    perMonth = GVDdf.groupby(pd.Grouper(freq="M")).count()[['sources']]
+    perYear = GVDdf.groupby(pd.Grouper(freq="Y")).count()[['sources']]
+    perDay = GVDdf.groupby(GVDdf.index).count()[['sources']]
+    
+    print(perYear)
+    print(perMonth)
+    print(perDay)
 
 if __name__ == "__main__":
     main()
