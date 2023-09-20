@@ -31,7 +31,8 @@ def main():
     perHThousand = GVDSumState.assign(deathsPerHThousand = (GVDSumState['n_killed'] / GVDSumState['2020_Population'])*100000, injuriesPerHThousand = (GVDSumState['n_injured'] / GVDSumState['2020_Population'])*100000)
     perHThousand = perHThousand.sort_values('deathsPerHThousand')
     print(f"\nEl estado con más muertes por cada 100,000 habitantes es: \n{perHThousand.tail(1)[['deathsPerHThousand']]}\n\ny el que tiene menos es: \n{perHThousand.head(1)[['deathsPerHThousand']]}\n")
-    perHThousand.to_csv('MuertesPorCadaCienMil.csv')   
+    perHThousand.to_csv('MuertesPorCadaCienMil.csv') 
+    #perHThousand.mean(axis=0)
 
     #Lugar más común (analizando location_description)
     GVDdf['location_description'] = GVDdf['location_description'].fillna('Unknown').str.lower()
@@ -47,9 +48,31 @@ def main():
     perYear = GVDdf.groupby(pd.Grouper(freq="Y")).count()[['sources']]
     perDay = GVDdf.groupby(GVDdf.index).count()[['sources']]
     
-    print(perYear)
-    print(perMonth)
-    print(perDay)
+    yearMaxCasosFecha = perYear.sources.idxmax().date()
+    yearMaxCasos = perYear.loc[str(yearMaxCasosFecha)].sources
+    yearMinCasosFecha = perYear.sources.idxmin().date()
+    yearMinCasos = perYear.loc[str(yearMinCasosFecha)].sources
+    yearMeanCasos = str(perYear.sources.mean())
+
+    mesMaxCasosFecha = perMonth.sources.idxmax().date()
+    mesMaxCasos = perMonth.loc[str(mesMaxCasosFecha)].sources
+    mesMinCasosFecha = perMonth.sources.idxmin().date()
+    mesMinCasos = perMonth.loc[str(mesMinCasosFecha)].sources
+    mesMeanCasos = str(perMonth.sources.mean())
+
+    dayMaxCasosFecha = perDay.sources.idxmax().date()
+    dayMaxCasos = perDay.loc[str(dayMaxCasosFecha)].sources
+    dayMinCasosFecha = perDay.sources.idxmin().date()
+    dayMinCasos = perDay.loc[str(dayMinCasosFecha)].sources
+    dayMeanCasos = str(perDay.sources.mean())
+
+    print(f"""\nEl año con más incidentes fué {yearMaxCasosFecha.year} con {yearMaxCasos} incidentes, el menor fué {yearMinCasosFecha.year} con {yearMinCasos} incidentes, en promedio {yearMeanCasos} casos al año.
+          \nEl mes con más incidentes fué {mesMaxCasosFecha.strftime('%Y-%m')} con {mesMaxCasos} incidentes, el menor fué {mesMinCasosFecha.strftime('%Y-%m')} con {mesMinCasos} incidentes, en promedio {mesMeanCasos} casos al mes.
+          \nY el día con más incidentes fué {dayMaxCasosFecha} con {dayMaxCasos} incidentes, el menor fué {dayMinCasosFecha} con {dayMinCasos} incidentes, en promedio {dayMeanCasos} casos al día.""")
+
+    perYear.to_csv('casosPorAño.csv')
+    perMonth.to_csv('casosPorMes.csv')
+    perDay.to_csv('casosPorDia.csv')
 
 if __name__ == "__main__":
     main()
