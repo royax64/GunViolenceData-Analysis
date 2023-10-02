@@ -282,6 +282,5 @@ def main():
     print(f"La pistola más usada es {perGunType.index[0]}")
     perGunType.to_csv('porTipoPistola.csv')
 
-
 if __name__ == "__main__":
     main()
