@@ -51,7 +51,7 @@ def main():
     print(incidentsPerHThousand)
     print(perStatusAndType)
     print(perGenderAndType)
-    print(perAgeperAgeGroupAndType)
+    print(perAgeGroupAndType)
     print(perGunStolen)
     print(perParticipantRelationship)
     print(perGunType)
