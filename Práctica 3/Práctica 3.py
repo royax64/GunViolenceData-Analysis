@@ -282,5 +282,13 @@ def main():
     print(f"La pistola más usada es {perGunType.index[0]}")
     perGunType.to_csv('porTipoPistola.csv')
 
+    #Amount of participants per age
+    perAge = participantsGVD.groupby('participant_age').count()[['participant_type']]
+    perAge.rename(columns={'participant_type':'total_amount_people'}, inplace=True)
+    ageMoreIncidents = int(perAge.idxmax().iloc[0])
+    incidentsAtAge = perAge.loc[ageMoreIncidents, 'total_amount_people']
+    print(f"\nLa gente de {ageMoreIncidents} años es la que se involucra en más incidentes (con {incidentsAtAge} incidentes).")
+    perAge.to_csv('porEdadParticipante.csv')
+
 if __name__ == "__main__":
     main()

@@ -24,6 +24,7 @@ def main():
     perGunStolen = pd.read_csv('../Práctica 3/porPistolaRobada.csv', index_col=0)
     perParticipantRelationship = pd.read_csv('../Práctica 3/porRelacionDeParticipantes.csv', index_col=0)
     perGunType = pd.read_csv('../Práctica 3/porTipoPistola.csv', index_col=0)
+    perAge = pd.read_csv('../Práctica 3/porEdadParticipante.csv')
 
     #Renombrando dataframes
     perParticipantType.rename(columns = {'participant_age':'total_people'}, inplace = True)
@@ -50,10 +51,11 @@ def main():
     print(incidentsPerHThousand)
     print(perStatusAndType)
     print(perGenderAndType)
-    print(perAgeGroupAndType)
+    print(perAgeperAgeGroupAndType)
     print(perGunStolen)
     print(perParticipantRelationship)
     print(perGunType)
+    print(perAge)
     """
 
     ###Fig 1: Localización de todos los eventos
@@ -161,6 +163,11 @@ def main():
     deathsAndInjuriesPerH1000ByState.update_layout(title_text = 'Cantidad de muertos y heridos por cada 100,000 habitantes', margin={"r":0,"t":0,"l":0,"b":0})
     pt.offline.plot(deathsAndInjuriesPerH1000ByState, filename="muertesyHeridosPorCada100000PorEstado.html")
     deathsAndInjuriesPerH1000ByState.write_image("muertesyHeridosPorCada100000PorEstado.png")
+
+    ##Fig 17: Por cantidad de involucrados por edad.
+    cantidadParticipantesEdad = px.histogram(perAge, x=perAge.index, y='total_amount_people')
+    pt.offline.plot(cantidadParticipantesEdad, filename="cantidadParticipantesPorEdad.html")
+    cantidadParticipantesEdad.write_image("cantidadParticipantesPorEdad.png")
 
     
 if __name__ == "__main__":
