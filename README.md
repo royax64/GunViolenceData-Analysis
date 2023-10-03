@@ -14,8 +14,10 @@ Se identifican las entidades de Ubicación, Pistola, Victima y Victimario.
 ## Ejecución
 
 Se deben ejecutar los archivos .py en orden, es decir, Práctica 1.py, Práctica 2.py,...; es posible que los scripts fallen si no se ejecutan en orden.
-_> Junto con Práctica 2.py se debe ejecutar Población.py
-   Antes de Práctica 5.py se debe ejecutar Pre-Práctica 5.py
+
+### Observaciones ###
+1. Junto con Práctica 2.py se debe ejecutar Población.py. 
+2. Antes de Práctica 5.py se debe ejecutar Pre-Práctica 5.py.
 
 ## Creditos
 
